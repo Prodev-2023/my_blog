@@ -1,0 +1,21 @@
+{% extends "blog/index.html" %}
+
+
+{% block content %}
+    <h1 class="text-3xl font-bold text-center mb-20">welcome to the main home page</h1>
+    <div class=' '>
+        {% for post in posts %}
+        <div class=" bg-white space-y-2 mb-4 shadow-2xl">
+            
+           <div class='flex gap-4 border-2 border-gray-200 p-2'>
+            <h3 class='text-blue-400 font-bold'> {{post.author}} </h3>
+            <p class=""> {{post.date_posted | date:"F d, Y"}} </p>
+           </div>
+            <p class="text-red-700 border-2 border-gray-200 pl-4 py-2"> {{post.content}} </p>
+            <h1 class="text-xl font-bold  border-2 border-gray-200 pl-4 py-2">{{ post.title }}</h1>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
+
+

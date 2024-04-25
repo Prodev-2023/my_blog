@@ -1,0 +1,11 @@
+{% extends "blog/index.html" %}
+
+
+   {% block content %}
+        <h1 class='text-4xl text-white bg-red-400 p-4 rounded-xl mb-8'>You are already loged out!!</h1>
+        <div class='container mx-auto'>
+           <div>
+            <p class='text-sm'>Hope to see you soon bye for now </p><a class='underline text-blue-600' href=" {% url "login-page" %} ">login here</a>
+           </div>
+        </div>
+   {% endblock content %}

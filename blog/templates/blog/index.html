@@ -1,0 +1,64 @@
+{% load static %}
+{% load static tailwind_tags %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% tailwind_css %}
+    
+
+    {% if title %}
+        <title>prodev blog - {{title}} </title>
+    {% else %}
+        <title>prodev blog </title>
+    {% endif %}
+</head>
+<body class='bg-gray-300'>
+    <header class='bg-gray-600 mb-10'>
+        <nav class='container mx-auto flex justify-between items-center h-30 py-4'>
+            <ul class='flex gap-10 items-center text-white text-2xl'>
+                <li><a href=" {% url "blog-home" %}">ProDev</a></li>
+                <li><a href=" {% url "blog-home" %}">Home</a></li>
+                <li><a href=" {% url "blog-about" %}">About</a></li>
+            </ul>
+            <ul class='flex gap-6 items-center text-white text-2xl'>
+                {% if user.is_authenticated %}
+                     <li><a href="{% url "profile-page" %}">profile</a></li>
+                     <li>
+                        <form action=" {% url "logout-page" %} " method="post">
+                            {% csrf_token %}
+                            <button type="submit">logout</button>
+                        </form>
+                    </li> 
+                {% else %}
+                    <li><a href="{% url "login-page" %}">Login</a></li>
+                    <li><a href="{% url "register-page" %}">Register</a></li> 
+                {% endif %}     
+            </ul>
+        </nav>
+    </header> 
+    <main>
+        
+        <div class='grid grid-cols-3 row-span-1 items-center container mx-auto gap-20'>
+            <div class=''>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class='p-4 mb-8 bg-green-200 text-gray-500 text-center'{{message.tags}}>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% block content %}{% endblock content %}
+            </div>
+            <div class='col-span-2 bg-green-400 w-1/2 mx-auto'>
+               Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores numquam sapiente suscipit officia obcaecati vel accusantium tempore velit. Non tenetur harum ducimus itaque? Maiores culpa mollitia odit reprehenderit placeat cum, itaque accusamus architecto beatae rerum delectus repellendus quis aliquam similique dolorem ut ipsa, quos blanditiis autem deleniti, libero eos hic?
+                    
+                </ul>
+            </div>
+        </div>
+    </main>
+   </body>
+</html>
